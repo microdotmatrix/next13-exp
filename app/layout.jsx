@@ -1,4 +1,14 @@
-import './globals.css'
+import '~/main.scss';
+
+import { modularScale, size } from 'polished'
+
+import Nav from '@comp/nav'
+import Logo from '@comp/logo'
+import headImg from '@pub/images/placeholder.jpg'
+
+const icStyles = {
+  ...size(modularScale(4))
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -8,7 +18,29 @@ export default function RootLayout({ children }) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <header>
+          <section>
+            <div className="site-logo">
+              <Logo />
+            </div>
+            <div className="site-nav">
+              <Nav />
+            </div>
+          </section>
+        </header>
+        <main>
+          {children}
+        </main>
+        <footer>
+          <div>
+            <h4>&copy; JP 2022</h4>
+          </div>
+          <div>
+            Some footer stuff
+          </div>
+        </footer>
+      </body>
     </html>
   )
 }

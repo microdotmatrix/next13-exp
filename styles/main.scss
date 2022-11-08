@@ -1,0 +1,9 @@
+@use 'gerillass' as *;
+
+@forward 'lib/tailwind';
+@forward 'functions';
+
+@forward 'theme';
+
+@forward 'components/typography';
+@forward 'components/layout';

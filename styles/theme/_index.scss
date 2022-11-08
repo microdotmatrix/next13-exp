@@ -1,0 +1,104 @@
+@use '../config' as *;
+
+// Typography, sizing, spacing
+:root {
+  --baseTextSize: 18px;
+  --textSizeIncrement: 1.618;
+
+  --text-xs: calc(var(--baseTextSize) / var(--textSizeIncrement));
+  --text-s: var(--baseTextSize);
+  --text-m: calc(var(--text-s) * var(--textSizeIncrement));
+  --text-l: calc(var(--text-m) * var(--textSizeIncrement));
+  --text-xl: calc(var(--text-l) * var(--textSizeIncrement));
+
+  --lineHeightFixedAmount: 0.35rem;
+  --lineHeightRelativeAmount: 1.618;
+  --globalLineHeight: calc(var(--lineHeightFixedAmount) + var(--lineHeightRelativeAmount));
+
+  --fontFamily: Futura, sans-serif;
+
+  --unit: 0.69rem;
+  --spaceIncrement: 1.618;
+
+  --space-s: var(--unit);
+  --space-m: calc(var(--space-s) * var(--spaceIncrement));
+  --space-l: calc(var(--space-m) * var(--spaceIncrement));
+  --space-xl: calc(var(--space-l) * var(--spaceIncrement));
+  --space-2xl: calc(var(--space-xl) * var(--spaceIncrement));
+  --space-3xl: calc(var(--space-2xl) * var(--spaceIncrement));
+  --space-4xl: calc(var(--space-3xl) * var(--spaceIncrement));
+
+  --textFrameRatio: 3.33;
+  --textFrameY: 0.33em;
+  --textFrameX: calc(var(--textFrameY) * var(--textFrameRatio));
+
+  --radius: .33rem;
+  --fieldBorderWidth: 1px;
+
+  --gutter-x: calc(100% - 95vw);
+  
+  @media (min-width: 1600px) {
+    --gutter-x: calc(100% - 90vw);
+  }
+}
+
+// Color Scheme 
+:root {
+  --accentH: 196;
+  --accentS: 42%;
+  --accentL: 86%;
+  --c-accent: hsl(var(--accentH), var(--accentS), var(--accentL));
+  --c-accentContrasted: hsl(var(--accentH), var(--accentS), 15%);
+
+  --greyH: var(--accentH);
+  --greyS: 8%;
+  --initialGreyLightness: 93%;
+  --greyscaleLightnessIncrement: 11.3%;
+
+  --grey1L:  var(--initialGreyLightness);
+  --grey2L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 1);
+  --grey3L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 2);
+  --grey4L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 3);
+  --grey5L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 4);
+  --grey6L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 5);
+  --grey7L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 6);
+  --grey8L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 7);
+  --grey9L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 8);
+
+  --c-grey1: hsl(var(--greyH), var(--greyS), var(--grey1L));
+  --c-grey2: hsl(var(--greyH), var(--greyS), var(--grey2L));
+  --c-grey3: hsl(var(--greyH), var(--greyS), var(--grey3L));
+  --c-grey4: hsl(var(--greyH), var(--greyS), var(--grey4L));
+  --c-grey5: hsl(var(--greyH), var(--greyS), var(--grey5L));
+  --c-grey6: hsl(var(--greyH), var(--greyS), var(--grey6L));
+  --c-grey7: hsl(var(--greyH), var(--greyS), var(--grey7L));
+  --c-grey8: hsl(var(--greyH), var(--greyS), var(--grey8L));
+  --c-grey9: hsl(var(--greyH), var(--greyS), var(--grey9L));
+
+  --c-border: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.1);
+  --c-overlay: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.07);
+  --c-background: white;
+  --c-body: var(--c-grey8);
+  --c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.5);
+  --c-fieldBorder: var(--c-grey2);
+  --c-buttonBg: var(--c-grey2);
+  
+  --c-link: #{$link};
+  --c-linkHover: #{$linkHover};
+  --c-linkActive: #{$linkActive};
+}
+
+// Dark Mode
+.dark {
+  --c-border: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.1);
+  --c-overlay: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.07);
+  --c-background: var(--c-grey9);
+  --c-body: var(--c-grey1);
+  --c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.5);
+  --c-fieldBorder: var(--c-grey6);
+  --c-buttonBg: var(--c-grey6);
+
+  --c-link: #{$link-dark};
+  --c-linkHover: #{$linkHover-dark};
+  --c-linkActive: #{$linkActive};
+}

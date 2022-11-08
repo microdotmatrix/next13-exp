@@ -1,0 +1,49 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  h1 { font-size: $h1; }
+  h2 { font-size: $h2; }
+  h3 { font-size: $h3; }
+  h4 { font-size: $h4; }
+  h5 { font-size: $h5; }
+  h6 { font-size: $h6; }
+}
+
+@layer utilities {
+  .btn-inc {
+    padding: 2px 12px;
+    border: 1px solid rgba(#ccc, 0.25);
+  }
+  .oswald {
+    font-family: $oswald;
+  }
+  .saira {
+    font-family: $saira;
+  }
+  .share-tech {
+    font-family: $sharetech;
+  }
+  .armata {
+    font-family: $armata;
+  }
+  .ntr {
+    font-family: $ntr;
+  }
+  .nova-square {
+    font-family: $nova-square;
+  }
+  .rubik-iso {
+    font-family: $rubik-iso;
+  }
+  .alumni-sans {
+    font-family: $alumni;
+  }
+  .smooch-sans {
+    font-family: $smooch;
+  }
+}

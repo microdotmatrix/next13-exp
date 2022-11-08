@@ -1,0 +1,138 @@
+//
+// Just continuing to use my color swatch function to make everything easier;
+// This is where I can load other swatches and palettes I might want to use other
+// than Open Color. Got Tailwind's 'Slate' swatches, because I love cool grays,
+// could probably do the same with the 'Stone' and 'Zinc' swatches as well, if you're
+// into that sort of thing...
+//
+
+
+//  Gray
+//  ───────────────────────────────────
+
+$slate-list: (
+  "1": #FCFEFF,
+  "2": #E7F1FA,
+  "3": #D4E0E9,
+  "4": #C0CFDF,
+  "5": #727C8B,
+  "6": #546071,
+  "7": #3C4655,
+  "8": #181B20,
+  "9": #09090B
+);
+
+// Palette Selector
+
+@function slate($shade) {
+  
+  @if map-has-key($slate-list, #{$shade}) {
+    $shade: map-get($slate-list, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}
+
+$cool: (
+  "0": #e8e9ee,
+  "1": #bbbfcd,
+  "2": #9aa3b4,
+  "3": #75859a,
+  "4": #465E77,
+  "5": #364a5d,
+  "6": #24333f,
+  "7": #151f25,
+  "8": #0f171b,
+  "9": #0e1012,
+);
+
+@function cool($shade) {
+  
+  @if map-has-key($cool, #{$shade}) {
+    $shade: map-get($cool, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}
+
+$purple: (
+  "1": #f3e7ed,
+  "2": #d9acce,
+  "3": #cb75d1,
+  "4": #B423CF,
+  "5": #591c6b,
+  "6": #1b1325,
+);
+
+@function purple($shade) {
+  
+  @if map-has-key($purple, #{$shade}) {
+    $shade: map-get($purple, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}
+
+$stone: (
+  "0": #fafaf9,
+  "1": #f5f5f4,
+  "2": #e7e5e4,
+  "3": #d6d3d1,
+  "4": #a8a29e,
+  "5": #78716c,
+  "6": #57534e,
+  "7": #44403c,
+  "8": #292524,
+  "9": #1c1917,
+);
+
+@function stone($shade) {
+  
+  @if map-has-key($stone, #{$shade}) {
+    $shade: map-get($stone, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}
+
+$zinc: (
+  "0": #fafafa,
+  "1": #f4f4f5,
+  "2": #e4e4e7,
+  "3": #d4d4d8,
+  "4": #a1a1aa,
+  "5": #71717a,
+  "6": #52525b,
+  "7": #3f3f46,
+  "8": #27272a,
+  "9": #18181b,
+);
+
+@function zinc($shade) {
+  
+  @if map-has-key($zinc, #{$shade}) {
+    $shade: map-get($zinc, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}

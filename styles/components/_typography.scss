@@ -1,0 +1,115 @@
+// Global stylesheet for universal typography settings
+
+// Loading Gerillass library
+@use 'gerillass' as *;
+
+// Load global variables
+@use '../config' as *;
+
+// Typeface, sizing and spacing defaults for headings
+h1, h2, h3, h4, h5, h6 {
+  color: var(--c-grey4);
+	font-family: $heading-font;
+	font-weight: $heading-weight;
+	line-height: 1;
+	margin-top: clamp(#{$phi}rem, 3.14vw, #{$pi}rem);
+	margin-bottom: clamp(0.618rem, 1.618vw, 1.618rem);
+	@include only(first) {
+		margin-top: 0;
+	}
+}
+
+// Defaults for sub-headings
+.sub-title {
+  color: var(--c-accentContrasted);
+  position: relative;
+  top: 0.25vw;
+  margin-left: 4.2vw;
+  font-size: $md;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-top: 0;
+  margin-bottom: $space-pi;
+  line-height: 1;
+}
+
+h1 {
+	letter-spacing: -0.1vw;
+	margin-top: 0;
+}
+
+h2 {
+	letter-spacing: -0.075vw;
+}
+
+h3 {
+	letter-spacing: -0.05vw;
+}
+
+h4 {
+	letter-spacing: -0.025vw;
+}
+
+h5, h6 {
+  letter-spacing: 0;
+}
+
+p {
+  font-size: var(--base);
+  line-height: var(--globalLineHeight);
+  margin: calc(var(--space-phi) * 0.666) 0 calc(var(--space-phi) * 0.666);
+  @include only(first) {
+    margin-top: 0;
+  }
+  @include breakpoint(min, medium) {
+    font-size: var(--p);
+  }
+  @include breakpoint(min, large) {
+    font-size: var(--p);
+  }
+}
+
+a[href] {
+  color: var(--c-link);
+  text-decoration: none;
+  display: inline;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  transition: color 200ms ease-in;
+  &:hover {
+    color: var(--c-linkHover);
+  }
+}
+
+
+article {
+  a[href] {
+    &::after {
+      content: '';
+      height: 1px;
+      width: 100%;
+      background: var(--c-border);
+      position: absolute;
+      z-index: -1;
+      bottom: 4px;
+      left: 0;
+      transform: translateY(0) scaleX(0.85);
+      transition: background-color 400ms ease, transform 400ms ease-in;
+    }
+    &:hover {
+      &::after {
+        transform: translateY(0) scaleX(1);
+        background: var(--c-buttonBg);
+      }
+    }
+  }
+}
+
+blockquote {
+  margin: var(--space-xl) auto;
+  padding: var(--space-s) var(--space-m);
+  width: 90%;
+  border-left: 3em solid var(--c-border);
+
+}

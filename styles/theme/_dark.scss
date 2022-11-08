@@ -1,0 +1,34 @@
+@use '../functions/open-color' as *;
+@use '../functions/palettes' as *;
+@use '../functions/social-colors';
+@use '../functions/gradients' ;
+
+$text-primary: cool(1);
+$text-secondary: slate(3);
+$text-alt: cool(3);
+$text-muted: ocGray(4);
+$text-accent: ocIndigo(4);
+$text-accent-2: ocYellow(5);
+$text-accent-3: ocCyan(6);
+
+$bg-primary: cool(9);
+$bg-secondary: slate(9);
+$bg-alt: slate(8);
+$bg-muted: cool(8);
+$bg-accent: cool(6);
+
+:where(html.dark) {
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-alt: #{$text-alt};
+  --text-muted: #{$text-muted};
+  --text-accent: #{$text-accent};
+  --text-accent-2: #{$text-accent-2};
+  --text-accent-3: #{$text-accent-3};
+
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-alt: #{$bg-alt};
+  --bg-muted: #{$bg-muted};
+  --bg-accent: #{$bg-accent};
+}

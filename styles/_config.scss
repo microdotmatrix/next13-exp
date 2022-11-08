@@ -1,0 +1,60 @@
+$map-for-breakpoints: (
+  'small': '512px',
+  'medium': '768px',
+  'large': '1024px',
+  'xlarge': '1280px',
+  'desktop': '1600px',
+  'full': '19200px'
+);
+
+// Porting CSS custom props into Sass variables for easier typing shorthand
+$phi:                 var(--phi);
+$e:                   var(--e);
+$pi:                  var(--pi);
+$space:               var(--space-phi);
+$space-phi:           var(--space-phi);
+$space-e:             var(--space-e);
+$space-pi:            var(--space-pi);
+
+$p:                   var(--p);
+$xs:                  0.7rem;
+$sm:                  var(--sm);
+$md:                  var(--md);
+$lg:                  var(--lg);
+$xl:                  var(--xl);
+$xxl:                 var(--xxl);
+$xxxl:                var(--xxxl);
+$xxxxl:               var(--xxxxl);
+
+$h1:                  var(--h1);
+$h2:                  var(--h2);
+$h3:                  var(--h3);
+$h4:                  var(--h4);
+$h5:                  var(--h5);
+$h6:                  var(--h6);
+
+$oswald: 'Oswald', sans-serif;
+$saira: 'Saira', sans-serif;
+$sharetech: 'Share Tech', sans-serif;
+$armata: 'Armata', sans-serif;
+$ntr: 'NTR', sans-serif;
+$rubik-iso: 'Rubik Iso', sans-serif;
+$nova-square: 'Nova Square', cursive;
+$teko: 'Teko', sans-serif;
+$prompt: 'Prompt', sans-serif;
+$cuprum: 'Cuprum', sans-serif;
+$alumni: 'Alumni Sans', sans-serif;
+$smooch: 'Smooch Sans', sans-serif;
+
+$text-font:           $saira;
+$text-line:           1.618;
+$text-weight:         366;
+$heading-font:        $oswald;
+$heading-weight:      500;
+
+$link: cool(6);
+$linkHover: slate(4);
+$linkActive: ocCyan(4);
+
+$link-dark: cool(3);
+$linkHover-dark: slate(3);

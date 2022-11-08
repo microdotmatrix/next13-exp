@@ -1,0 +1,47 @@
+@use '../functions/open-color' as *;
+@use '../functions/palettes' as *;
+@use '../functions/social-colors';
+@use '../functions/gradients' ;
+
+$sub-title: #1f2731;
+$dip-yellow: #ffb700;
+$dip-black: #100c07;
+$dip-orange: #f8941c;
+
+$text-primary: cool(8);
+$text-secondary: ocGray(7);
+$text-alt: cool(6);
+$text-alt-2: zinc(4);
+$text-muted: ocGray(7);
+$text-accent: slate(7);
+$text-accent-2: ocYellow(5);
+$text-accent-3: ocCyan(3);
+$text-nav-link: cool(4);
+$text-nav-hover: $dip-yellow;
+$text-nav-active: $dip-orange;
+
+$bg-primary: slate(1);
+$bg-secondary: cool(0);
+$bg-alt: slate(2);
+$bg-muted: cool(1);
+$bg-accent: cool(3);
+
+:where(html) {
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-alt: #{$text-alt};
+  --text-alt-2: #{$text-alt-2};
+  --text-muted: #{$text-muted};
+  --text-accent: #{$text-accent};
+  --text-accent-2: #{$text-accent-2};
+  --text-accent-3: #{$text-accent-3};
+  --text-nav-link: #{$text-nav-link};
+  --text-nav-hover: #{$text-nav-hover};
+  --text-nav-active: #{$text-nav-active};
+
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-alt: #{$bg-alt};
+  --bg-muted: #{$bg-muted};
+  --bg-accent: #{$bg-accent};
+}
