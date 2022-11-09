@@ -1,13 +1,20 @@
 import { Suspense } from 'react'
-import { getPosts } from '@lib/api'
+import { graphql, GET_POSTS } from '@lib/api'
 
 import Loading from './loading'
 import PostList from './list'
 
 async function listPosts() {
-  const response = await fetch(`https://wp.slayley.com/wp-json/wp/v2/posts`)
-  //const posts = await getPosts();
-  return response.json()
+  // Fetching posts from WordPress
+  async function getPosts() {
+    try {
+      let data = await graphql.request(GET_POSTS, {});
+      return data?.posts
+    } catch (error) {
+      throw error.message
+    }
+  }
+  return await getPosts()
 }
 
 const Page = async () => {
