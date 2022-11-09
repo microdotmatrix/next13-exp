@@ -6,6 +6,7 @@ import Nav from '@comp/nav'
 import Logo from '@comp/logo'
 import headImg from '@pub/images/placeholder.jpg'
 
+
 const icStyles = {
   ...size(modularScale(4))
 }

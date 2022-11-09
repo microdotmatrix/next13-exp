@@ -1,4 +1,5 @@
 @use 'gerillass' as *;
+@use '../config' as *;
 
 $map-for-breakpoints: (
   'small': '768px',
@@ -8,6 +9,11 @@ $map-for-breakpoints: (
   'desktop': '1600px',
   'full': '1780px'
 );
+
+html {
+  font-family: $saira;
+  font-size: 22px;
+}
 
 body {
   display: flex;
