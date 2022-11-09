@@ -10,8 +10,11 @@ specifiers:
   autoprefixer: ^10.4.13
   framer-motion: ^7.6.5
   gerillass: ^1.3.1
+  graphql: ^16.6.0
+  graphql-react: ^20.0.0
   graphql-request: ^5.0.0
   next: 13.0.2
+  next-graphql-react: ^15.0.0
   polished: ^4.2.2
   postcss: ^8.4.18
   postcss-import: ^15.0.0
@@ -20,14 +23,19 @@ specifiers:
   sass: ^1.56.0
   swr: ^1.3.0
   tailwindcss: ^3.2.2
+  urql: ^3.0.3
 
 dependencies:
   '@next/font': 13.0.2
+  graphql: 16.6.0
+  graphql-react: 20.0.0_react@18.2.0
   graphql-request: 5.0.0_graphql@16.6.0
   next: 13.0.2_e6en2gkdnbspgmiqkggoqbxjgy
+  next-graphql-react: 15.0.0_gkjqtjisrmyqtu4vtrp3z6abbi
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   swr: 1.3.0_react@18.2.0
+  urql: 3.0.3_onqnqwb3ubg5opvemcqf7c2qhy
 
 devDependencies:
   '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
@@ -988,6 +996,16 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: true
 
+  /@urql/core/3.0.5_graphql@16.6.0:
+    resolution: {integrity: sha512-6/1HG+WEAcPs+hXSFnxWBTWkNUwa8dj2cHysWokMaFIbAioGtUaSdxp2q9FDMtWAIGdc640NFSt2B8itGLdoAA==}
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
+      graphql: 16.6.0
+      wonka: 6.1.1
+    dev: false
+
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
     dependencies:
@@ -1751,6 +1769,13 @@ packages:
       jest-message-util: 27.5.1
     dev: true
 
+  /extract-files/13.0.0:
+    resolution: {integrity: sha512-FXD+2Tsr8Iqtm3QZy1Zmwscca7Jx3mMC5Crr+sEP1I303Jy1CYMuYCm7hRTplFNg3XdUavErkxnTzpaqdSoi6g==}
+    engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
+    dependencies:
+      is-plain-obj: 4.1.0
+    dev: false
+
   /extract-files/9.0.0:
     resolution: {integrity: sha512-CvdFfHkC95B4bBBk36hcEmvdR2awOdhhVUYH6S/zrVj3477zven/fJMYg7121h4T1xHZC+tetUpubpAhxwI7hQ==}
     engines: {node: ^10.17.0 || ^12.0.0 || >= 13.7.0}
@@ -1932,6 +1957,17 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
+  /graphql-react/20.0.0_react@18.2.0:
+    resolution: {integrity: sha512-NsNQvFmewGPvm9rQjSni80AB78zMJJL/Y0zEW0pgP6c5rA3L46qynhK1RpOhnv4JDNlrj50ZABiD10nnaqMJ+Q==}
+    engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
+    peerDependencies:
+      react: 16.14 - 18
+    dependencies:
+      extract-files: 13.0.0
+      react: 18.2.0
+      react-waterfall-render: 5.0.0_react@18.2.0
+    dev: false
+
   /graphql-request/5.0.0_graphql@16.6.0:
     resolution: {integrity: sha512-SpVEnIo2J5k2+Zf76cUkdvIRaq5FMZvGQYnA4lUWYbc99m+fHh4CZYRRO/Ff4tCLQ613fzCm3SiDT64ubW5Gyw==}
     peerDependencies:
@@ -1981,6 +2017,11 @@ packages:
   /html-escaper/2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
+
+  /http-link-header/1.0.5:
+    resolution: {integrity: sha512-msKrMbv/xHzhdOD4sstbEr+NbGqpv8ZtZliiCeByGENJo1jK1GZ/81zHF9HpWtEH5ihovPpdqHXniwZapJCKEA==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /http-proxy-agent/4.0.1:
     resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
@@ -2088,6 +2129,11 @@ packages:
   /is-number/7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
+
+  /is-plain-obj/4.1.0:
+    resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /is-potential-custom-element-name/1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
@@ -2833,6 +2879,23 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
+  /next-graphql-react/15.0.0_gkjqtjisrmyqtu4vtrp3z6abbi:
+    resolution: {integrity: sha512-6HNRBYxzKNjGDV4hYVycE9bF6dRbXnOfc8NAtI6q3nFCBGuImkHcmz6NgMfc+YpPSm4KlxpIpge/hkOeTc+x6Q==}
+    engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
+    peerDependencies:
+      graphql-react: ^20.0.0
+      next: ^12.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      graphql-react: 20.0.0_react@18.2.0
+      http-link-header: 1.0.5
+      next: 13.0.2_e6en2gkdnbspgmiqkggoqbxjgy
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-waterfall-render: 5.0.0_react@18.2.0
+    dev: false
+
   /next/13.0.2_e6en2gkdnbspgmiqkggoqbxjgy:
     resolution: {integrity: sha512-uQ5z5e4D9mOe8+upy6bQdYYjo/kk1v3jMW87kTy2TgAyAsEO+CkwRnMgyZ4JoHEnhPZLHwh7dk0XymRNLe1gFw==}
     engines: {node: '>=14.6.0'}
@@ -3193,6 +3256,15 @@ packages:
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
+
+  /react-waterfall-render/5.0.0_react@18.2.0:
+    resolution: {integrity: sha512-UXVDxuzuZvEYxGIL1J54hTaY42I9rOd4rU9qaM4555pu3g8HBNV4hfB2WqvmZNKFMVzcbxWpOwTV98i++CmjnQ==}
+    engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
+    peerDependencies:
+      react: 16.14 - 18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -3722,6 +3794,18 @@ packages:
       requires-port: 1.0.0
     dev: true
 
+  /urql/3.0.3_onqnqwb3ubg5opvemcqf7c2qhy:
+    resolution: {integrity: sha512-aVUAMRLdc5AOk239DxgXt6ZxTl/fEmjr7oyU5OGo8uvpqu42FkeJErzd2qBzhAQ3DyusoZIbqbBLPlnKo/yy2A==}
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      react: '>= 16.8.0'
+    dependencies:
+      '@urql/core': 3.0.5_graphql@16.6.0
+      graphql: 16.6.0
+      react: 18.2.0
+      wonka: 6.1.1
+    dev: false
+
   /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
@@ -3863,6 +3947,10 @@ packages:
     dependencies:
       isexe: 2.0.0
     dev: true
+
+  /wonka/6.1.1:
+    resolution: {integrity: sha512-shBtyZ0KFvUadtnDGlTRA4mF4pgcRoyZKikdputKhmShoXWcZDvlg6CUw6Jx9nTL7Ub8QUJoIarPpxdlosg9cw==}
+    dev: false
 
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}

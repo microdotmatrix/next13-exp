@@ -5,7 +5,7 @@ export default async function PostList({ posts }) {
     <div>
       {posts.nodes?.map((post, index) => (
         <article className="post-item" key={index}>
-          <Link href={`/blog/${post.id}`}><h2>{post.title}</h2></Link>
+          <Link href={`/blog/${post.slug}`}><h2>{post.title}</h2></Link>
           <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
         </article>
       ))}
