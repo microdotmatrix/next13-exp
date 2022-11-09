@@ -1,16 +1,17 @@
 import { Suspense } from 'react'
+import { getPosts } from '@lib/api'
 
 import Loading from './loading'
 import PostList from './list'
 
-async function getPosts() {
+async function listPosts() {
   const response = await fetch(`https://wp.slayley.com/wp-json/wp/v2/posts`)
-  const posts = await response.json();
-  return posts
+  //const posts = await getPosts();
+  return response.json()
 }
 
 const Page = async () => {
-  const posts = await getPosts();
+  const posts = await listPosts();
   return (
     <>
       <h1>Hits from the Blog...</h1>
