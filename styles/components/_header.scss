@@ -1,0 +1,37 @@
+@use 'gerillass' as *;
+@use '../config' as *;
+
+.site-header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 2rem 0 1rem;
+  overflow: hidden;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 103%;
+    height: 35vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.85;
+    filter: blur(6px);
+  }
+  section {
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    @include adaptive();
+    .site-logo {
+      flex: 3 0 0;
+    }
+    .nav-menu {
+      flex: 6 0 0;
+    }
+  }
+}

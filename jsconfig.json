@@ -5,6 +5,7 @@
       "@app/*": ["/app/*"],
       "@comp/*": ["/components/*"],
       "@ctx/*": ["/context/*"],
+      "@help/*": ["/helpers/*"],
       "@lib/*": ["/lib/*"],
       "@pgs/*": ["/pages/*"],
       "@pub/*": ["/public/*"],

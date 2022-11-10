@@ -1,4 +1,5 @@
 // Porting CSS custom props into Sass variables for easier typing shorthand
+// Spacing units, base integers of Phi, Euler's Constant, and Pi. Because math...
 $phi:                 var(--phi);
 $e:                   var(--e);
 $pi:                  var(--pi);
@@ -7,6 +8,7 @@ $space-phi:           var(--space-phi);
 $space-e:             var(--space-e);
 $space-pi:            var(--space-pi);
 
+// Typographic variable sizing units using clamp() function
 $p:                   var(--p);
 $xs:                  0.7rem;
 $sm:                  var(--sm);
@@ -17,6 +19,7 @@ $xxl:                 var(--xxl);
 $xxxl:                var(--xxxl);
 $xxxxl:               var(--xxxxl);
 
+// Heading sizes
 $h1:                  var(--h1);
 $h2:                  var(--h2);
 $h3:                  var(--h3);
@@ -24,6 +27,7 @@ $h4:                  var(--h4);
 $h5:                  var(--h5);
 $h6:                  var(--h6);
 
+// Shorthand vars for font faces + fallbacks
 $oswald: 'Oswald', sans-serif;
 $saira: 'Saira', sans-serif;
 $sharetech: 'Share Tech', sans-serif;
@@ -37,12 +41,14 @@ $cuprum: 'Cuprum', sans-serif;
 $alumni: 'Alumni Sans', sans-serif;
 $smooch: 'Smooch Sans', sans-serif;
 
+// Global base variables for text sizing, spacing and weight
 $text-font:           $saira;
 $text-line:           1.618;
 $text-weight:         366;
 $heading-font:        $oswald;
 $heading-weight:      500;
 
+// Global color variable assignments loaded from color palette functions
 $link: cool(6);
 $linkHover: slate(4);
 $linkActive: ocCyan(4);

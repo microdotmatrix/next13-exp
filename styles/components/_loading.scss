@@ -1,0 +1,32 @@
+.loading {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: #fff;
+}
+
+.load-motion {
+  will-change: transform;
+  animation: rotate 1.618s ease;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.load-error {
+  display: grid;
+  place-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}

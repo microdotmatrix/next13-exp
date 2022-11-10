@@ -1,5 +1,8 @@
 @use '../config' as *;
 
+// Custom properties for sizing, spacing and color themes generated with assistance from
+// Shaper, https://hihayk.github.io/shaper
+
 // Typography, sizing, spacing
 :root {
   --baseTextSize: 18px;

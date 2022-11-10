@@ -1,5 +1,15 @@
 @use 'gerillass' as *;
 
+// Breakpoint map config for Gerillass
+$map-for-breakpoints: (
+  'small': '768px',
+  'medium': '960px',
+  'large': '1280px',
+  'xlarge': '1440px',
+  'desktop': '1600px',
+  'full': '1780px'
+);
+
 @forward 'lib/tailwind';
 @forward 'functions';
 
@@ -7,4 +17,7 @@
 
 @forward 'components/typography';
 @forward 'components/layout';
-
+@forward 'components/header';
+@forward 'components/footer';
+@forward 'components/nav';
+@forward 'components/loading';

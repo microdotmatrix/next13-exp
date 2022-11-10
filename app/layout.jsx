@@ -1,19 +1,8 @@
 import '~/main.scss';
 
-import { modularScale, size } from 'polished'
-
 import Nav from '@comp/nav'
 import Logo from '@comp/logo'
 import SocialMedia from '@comp/social'
-
-import headImg from '@pub/images/placeholder.jpg'
-
-
-const icStyles = {
-  ...size(modularScale(4))
-}
-
-
 
 export default function RootLayout({ children }) {
   return (
@@ -24,12 +13,12 @@ export default function RootLayout({ children }) {
       */}
       <head />
       <body>
-        <header>
+        <header className="site-header">
           <section>
             <div className="site-logo">
               <Logo />
             </div>
-            <div className="site-nav">
+            <div className="nav-menu">
               <Nav />
             </div>
           </section>
@@ -37,7 +26,7 @@ export default function RootLayout({ children }) {
         <main>
           {children}
         </main>
-        <footer>
+        <footer className="site-footer">
           <div>
             <h4>&copy; JP 2022</h4>
           </div>

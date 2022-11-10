@@ -1,0 +1,9 @@
+@use '../config' as *;
+
+.site-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3rem 4rem;
+  background: #999;
+}

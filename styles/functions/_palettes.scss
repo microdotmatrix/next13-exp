@@ -136,3 +136,30 @@ $zinc: (
   
   @return $shade;
 }
+
+$liquid: (
+  "0": #000101,
+  "1": #050F16,
+  "2": #08222C,
+  "3": #093C44,
+  "4": #085E5E,
+  "5": #347275,
+  "6": #5F898D,
+  "7": #89A3A7,
+  "8": #B1BFC2,
+  "9": #D8DDDF,
+  "10": #FDFDFD,
+);
+
+@function liquid($shade) {
+  
+  @if map-has-key($liquid, #{$shade}) {
+    $shade: map-get($liquid, #{$shade});
+  } @else {
+    @if type-of($shade) != colour {
+      @error "Invalid colour name: `#{$shade}`.";
+    }
+  }
+  
+  @return $shade;
+}
