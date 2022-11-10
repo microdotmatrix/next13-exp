@@ -1,28 +1,26 @@
 import { Suspense } from 'react'
-import { graphql, GET_POSTS } from '@lib/api'
+import { graphql, allPostsQuery } from '@lib/wpQueries'
 
 import Loading from './loading'
 import PostList from './list'
 
 async function listPosts() {
   // Fetching posts from WordPress
-  async function getPosts() {
-    try {
-      let data = await graphql.request(GET_POSTS, {});
-      return data?.posts
-    } catch (error) {
-      throw error.message
-    }
+  try {
+    let data = await graphql.request(allPostsQuery, {});
+    return data?.posts
+  } catch (error) {
+    throw error.message
   }
-  return await getPosts()
 }
 
-const Page = async () => {
+const Blog = async () => {
   const posts = await listPosts();
   return (
     <>
-      <h1>Hits from the Blog...</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum neque reprehenderit ratione commodi porro blanditiis magnam ullam voluptatibus nesciunt nulla. Tempora, deleniti consequatur excepturi error corrupti ipsum molestias ad harum?</p>
+      <h1>Latest Updates</h1>
+      <h3 className='sub-title'>Articles fetched from WordPress</h3>
+      <p className='prose'>After a frustrating journey of integrating Next.js v13's new data fetching protocols, I've finally got this thing running WP Headless.</p>
       <Suspense fallback={<Loading />}>
         <PostList posts={posts} />
       </Suspense>
@@ -30,4 +28,4 @@ const Page = async () => {
   )
 }
 
-export default Page
+export default Blog
