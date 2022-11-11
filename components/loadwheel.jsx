@@ -1,18 +1,24 @@
 "use client"
-import { motion, LazyMotion, domAnimation } from 'framer-motion'
-import { Icon } from '@iconify/react';
-import { AnimatePresence } from 'framer-motion';
+
+import { usePathname } from 'next/navigation'
+import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { Icon } from '@iconify/react'
 
 export default function LoadWheel() {
+  const location = usePathname();
   return (
     <div className="loading">
-      <AnimatePresence>
-        
-          <motion.div initial={{ opacity: 0, x: '-300px' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: '300px' }} transition={{ duration: 0.5, type: "spring", stiffness: 250 }}>
-            <Icon icon="fa:wheelchair-alt" width="150px" />
-          </motion.div>
-       
-      </AnimatePresence>
+      <LazyMotion features={domAnimation}>
+        <m.div 
+          key={location}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+        >
+          <Icon icon="fa:circle-o-notch" width="100px" className='load-motion' />
+        </m.div>
+      </LazyMotion>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+@use "functions" as *;
+
 // Porting CSS custom props into Sass variables for easier typing shorthand
 // Spacing units, base integers of Phi, Euler's Constant, and Pi. Because math...
 $phi:                 var(--phi);
@@ -49,7 +51,7 @@ $heading-font:        $oswald;
 $heading-weight:      500;
 
 // Global color variable assignments loaded from color palette functions
-$link: cool(6);
+$link: var(--c-accentContrasted);
 $linkHover: slate(4);
 $linkActive: ocCyan(4);
 

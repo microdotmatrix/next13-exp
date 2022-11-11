@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { Icon } from '@iconify/react'
-import { useDarkMode } from "@help/darkMode"
+import { useDarkMode } from "@help/useDarkMode"
 
 export default function DarkSwitch(props) {
   const [isDark, toggleDark] = useDarkMode()

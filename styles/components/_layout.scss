@@ -13,6 +13,8 @@ body {
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--c-background);
+  color: var(--c-body);
 }
 
 .left-column {

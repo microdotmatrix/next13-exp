@@ -1,6 +1,7 @@
-import LoadWheel from '@comp/loadwheel';
+"use client"
+
+import LoadWheel from '@comp/loadwheel'
 
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return <LoadWheel />
 }
