@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic';
 import Link from 'next/link'
+
 import { graphql, postQuery, sleep } from '@lib/wp'
 
 import Loading from './loading'

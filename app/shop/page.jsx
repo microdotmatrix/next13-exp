@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, use } from 'react'
 import dynamic from 'next/dynamic'
 import { gql } from 'graphql-request'
 import { graphql } from '@lib/shopify'
@@ -36,20 +36,22 @@ export default async function ShopProducts() {
     return (
       <div className="load-error">
         <ClientIcon icon="line-md:cancel-twotone" size="250px" className="text-red-700 justify-self-center" />
-        <h3>Could not find post!</h3>
-        <p className="text-gray-900"><span className="font-bold">Invalid url:</span> "{slug}"</p>
-        <Link href="/blog">Go Back</Link>
+        <h3>Could not find products!</h3>
+        
+        <Link href="/">Go Back</Link>
       </div>
     )
   }
 
   return (
-    <div>
-      {products?.edges.map((product, index) => (
-        <div key={index}>
-          <h2>{product.title}</h2>
-        </div>
-      ))}
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div>
+        {products?.edges.map((node, index) => (
+          <div key={index}>
+            <h2>{node.title}</h2>
+          </div>
+        ))}
+      </div>
+    </Suspense>
   )
 }
