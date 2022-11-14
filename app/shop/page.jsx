@@ -1,28 +1,14 @@
 import { Suspense, use } from 'react'
 import dynamic from 'next/dynamic'
-import { gql } from 'graphql-request'
-import { graphql } from '@lib/shopify'
+import { graphql, GET_PRODUCTS } from '@lib/wp'
 
 import Loading from '../loading'
 import ClientIcon from '@util/clientIcon'
 
-const productsQuery = gql`
-  query getProducts {
-    products(first: 10) {
-      edges {
-        node {
-          id
-          title
-          description
-        }
-      }
-    }
-  }
-`
 
 const fetchProducts = async () => {
   try {
-    let data = await graphql.request(productsQuery, {})
+    let data = await graphql.request(GET_PRODUCTS, {})
     return data?.products
   } catch (error) {
     throw error.message
@@ -46,9 +32,10 @@ export default async function ShopProducts() {
   return (
     <Suspense fallback={<Loading />}>
       <div>
-        {products?.edges.map((node, index) => (
+        {products?.nodes.map((node, index) => (
           <div key={index}>
-            <h2>{node.title}</h2>
+            <h2>{node.name}</h2>
+            <div dangerouslySetInnerHTML={{ __html: node.description }} />
           </div>
         ))}
       </div>
