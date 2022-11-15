@@ -19,6 +19,15 @@ const listPosts = async () => {
   }
 }
 
+export async function generateStaticParams() {
+  const posts = await listPosts();
+
+  return posts.nodes?.map((post) => ({
+    slug: post.slug.toString(),
+  }));
+}
+
+
 export default async function Blog() {
   // Load post data
   const posts = await listPosts();

@@ -1,19 +1,29 @@
 import { Suspense, use } from 'react'
 import dynamic from 'next/dynamic'
-import { graphql, GET_PRODUCTS } from '@lib/wp'
+import { graphql, productsQuery } from '@lib/wp'
 
 import Loading from '../loading'
 import ClientIcon from '@util/clientIcon'
 
+const ProductList = dynamic(() => import('./list'), { suspense: true })
 
 const fetchProducts = async () => {
   try {
-    let data = await graphql.request(GET_PRODUCTS, {})
+    let data = await graphql.request(productsQuery, {})
     return data?.products
   } catch (error) {
     throw error.message
   }
 }
+
+export async function generateStaticParams() {
+  const products = await fetchProducts();
+
+  return products.nodes?.map((product) => ({
+    slug: product.slug.toString(),
+  }));
+}
+
 
 export default async function ShopProducts() {
   const products = await fetchProducts()
@@ -31,14 +41,7 @@ export default async function ShopProducts() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div>
-        {products?.nodes.map((node, index) => (
-          <div key={index}>
-            <h2>{node.name}</h2>
-            <div dangerouslySetInnerHTML={{ __html: node.description }} />
-          </div>
-        ))}
-      </div>
+      <ProductList products={products} />
     </Suspense>
   )
 }

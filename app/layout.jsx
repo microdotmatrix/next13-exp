@@ -1,10 +1,13 @@
 import '~/main.scss';
 
+import Link from 'next/link'
+
 import Nav from '@comp/nav'
 import Logo from '@comp/logo'
 import SocialMedia from '@comp/social'
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
       {/*
@@ -16,12 +19,15 @@ export default function RootLayout({ children }) {
         <header className="site-header">
           <section>
             <div className="site-logo">
-              <Logo />
+              <Link href="/">
+                <Logo />
+              </Link>
             </div>
             <div className="nav-menu">
               <Nav />
             </div>
           </section>
+          
         </header>
         <main className="page-content">
           {children}

@@ -3,30 +3,30 @@
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
 import { modularScale } from 'polished';
-import DarkSwitch from './darkswitch';
 
 const navLinks = {
   fontSize: modularScale(2.62)
 }
 
+const iconStyle = {
+  display: 'inline-flex'
+}
+
 const Nav = () => {
   return (
     <nav className="flex flex-row justify-between px-8" style={navLinks}>
-      <Link href="/">
-        <Icon icon="carbon:home" inline="true" style={{ display: 'inline-flex' }} /> <span>Home</span>
-      </Link>
       <Link href="/about">
-        <Icon icon="carbon:information" inline="true" style={{ display: 'inline-flex' }} /> <span>About</span>
+        <Icon icon="carbon:information" inline="true" style={iconStyle} /> <span>About</span>
       </Link>
       <Link href="/blog">
-        <Icon icon="carbon:blog" inline="true" style={{ display: 'inline-flex' }} /> <span>Blog</span>
+        <Icon icon="carbon:blog" inline="true" style={iconStyle} /> <span>Blog</span>
       </Link>
       <Link href="/shop">
-        Shop
+        <Icon icon="carbon:shopping-bag" inline="true" style={iconStyle} /> <span>Shop</span>
       </Link>
-      <div className="theme-switch">
-        <DarkSwitch />
-      </div>
+      <Link href="/shop/cart">
+        <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} />
+      </Link>
     </nav>
   )
 }
