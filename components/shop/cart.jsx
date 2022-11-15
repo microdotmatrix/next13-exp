@@ -2,15 +2,15 @@
 
 import { useEffect } from 'react'
 import { useCart } from 'react-use-cart'
+import Image from 'next/image'
 
-
-export default function Cart() {
+export default async function Cart() {
   const {
     isEmpty,
     totalUniqueItems,
     items,
     updateItemQuantity,
-    removeItem,
+    removeItem
   } = useCart();
 
   if (isEmpty) return <p>Your cart is empty</p>;
@@ -23,6 +23,14 @@ export default function Cart() {
         {items.map((item) => (
           <li key={item.id} className='w-full'>
             <div className='flex flex-row justify-between items-center'>
+              <div className='overflow-hidden' style={{ maxWidth: '360px' }}>
+                <Image
+                  src={item.image.sourceUrl}
+                  alt={item.name}
+                  width={200}
+                  height={200}
+                />
+              </div>
               <h4>{item.name}</h4>
               <div className='flex-1 flex flex-row justify-end'>
                 <div>

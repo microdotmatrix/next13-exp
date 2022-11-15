@@ -11,7 +11,7 @@ const PageView = dynamic(() => import('./view'), { suspense: true })
 
 const pageQuery = gql`
   query getPage {
-    pageBy(uri: "about") {
+    page(idType: URI id: "about") {
       id
       date
       title
@@ -33,7 +33,7 @@ const pageQuery = gql`
 async function fetchPage() {
   try {
     let data = await graphql.request(pageQuery, {})
-    return data?.pageBy
+    return data?.page
   } catch (error) {
     throw error.message
   }

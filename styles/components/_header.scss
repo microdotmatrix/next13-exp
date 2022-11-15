@@ -23,15 +23,31 @@
     z-index: 10;
     margin: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     @include adaptive();
     .site-logo {
-      flex: 3 0 0;
+      flex: 1 0 0;
     }
     .nav-menu {
-      flex: 6 0 0;
+      flex: 2 0 0;
+      nav {
+        a {
+          span {
+            font-family: $alumni;
+          }
+        }
+      }
+    }
+    @include breakpoint(min, medium) {
+      flex-direction: row;
+      .site-logo {
+        flex: 3 0 33%;
+      }
+      .nav-menu {
+        flex: 6 0 66%;
+      }
     }
   }
 }

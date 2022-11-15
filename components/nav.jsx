@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import { modularScale } from 'polished';
 
 const navLinks = {
-  fontSize: modularScale(2.62)
+  fontSize: modularScale(2.64),
 }
 
 const iconStyle = {
@@ -14,7 +14,7 @@ const iconStyle = {
 
 const Nav = () => {
   return (
-    <nav className="flex flex-row justify-between px-8" style={navLinks}>
+    <nav className="flex flex-col md:flex-row justify-start md:justify-between px-8" style={navLinks}>
       <Link href="/about">
         <Icon icon="carbon:information" inline="true" style={iconStyle} /> <span>About</span>
       </Link>

@@ -1,4 +1,4 @@
-import Cart from '@comp/shop/cart';
+import Cart from '@comp/shop/cart'
 
 export default function CartPage() {
   return (

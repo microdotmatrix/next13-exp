@@ -19,9 +19,7 @@ export default function RootLayout({ children }) {
         <header className="site-header">
           <section>
             <div className="site-logo">
-              <Link href="/">
-                <Logo />
-              </Link>
+              <Logo />
             </div>
             <div className="nav-menu">
               <Nav />

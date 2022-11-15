@@ -1,0 +1,84 @@
+@use 'gerillass' as *;
+@use '../functions' as *;
+
+.wp-block-media-text {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  background: gradient(subtle-grey);
+  @include breakpoint(min, large) {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  &__media {
+    flex: 1 0 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(50%);
+    opacity: 0.9;
+    overflow: hidden;
+    @apply shadow-xl shadow-liquid-900/30 hover:shadow-liquid-900/50;
+    transition: all 0.3s ease-in-out;
+    @include breakpoint(min, large) {
+      flex: 1 0 50%;
+    }
+    &:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      > img {
+        opacity: 0.6;
+        filter: blur(1px);
+      }
+    }
+    > img {
+      mix-blend-mode: overlay;
+      filter: blur(3px);
+      opacity: 0.75;
+      height: 95%;
+      margin: auto;
+    }
+  }
+  &__content {
+    flex: 1 0 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include breakpoint(min, large) {
+      flex: 1 0 50%;
+    }
+    h1 {
+      font-size: var(--h2);
+    }
+    h2 {
+      font-size: var(--h3);
+    }
+    h3 {
+      font-size: var(--h4);
+    }
+    h4 {
+      font-size: var(--h5);
+    }
+    h5 {
+      font-size: var(--h6);
+    }
+    p {
+      font-size: var(--base);
+    }
+  }
+}
+
+.alignwide {
+  width: 100%;
+  margin: 0 auto;
+  @include breakpoint(min, full) {
+    width: 85%;
+  }
+}
+
+.alignfull {
+  width: 100%;
+  margin: 0 auto;
+}

@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link'
 import { Icon } from '@iconify/react'
 import { modularScale, size } from 'polished'
 
@@ -8,9 +9,11 @@ const logoStyles = {
 
 const Logo = () => {
   return (
-    <>
-      <Icon icon="game-icons:bullet-bill" style={logoStyles} />
-    </>
+    <div className='flex p-6 w-fit rounded-full'>
+      <Link href="/">
+        <Icon icon="game-icons:triforce" style={logoStyles} />
+      </Link>
+    </div>
   )
 }
 

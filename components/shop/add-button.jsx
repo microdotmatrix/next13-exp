@@ -8,7 +8,7 @@ export default function AddToCart({ product }) {
   return (
     <button
       className="btn btn-primary"
-      onClick={() => addItem({id: product.id, name: product.name, price: product.price, quantity: 1 })}
+      onClick={() => addItem({id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 })}
     >
       Add to cart
     </button>

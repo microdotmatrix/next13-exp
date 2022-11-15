@@ -1,12 +1,12 @@
 "use client"
 // Load async motion components from Framer Motion library
 // Template wrapper renders client side to support synchronous effects utilized by 
-import { API_URL } from '@lib/wp';
+
 import { CartProvider } from 'react-use-cart'
 import { usePathname } from 'next/navigation';
 import { m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion';
 
-export default function Template({ children }, pageProps) {
+export default function Template({ children }) {
   let location = usePathname()
 
   return (
