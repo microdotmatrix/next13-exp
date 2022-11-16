@@ -8,12 +8,10 @@ export default async function PageView({ page }) {
       <FeaturedImage>
         <Image src={page.featuredImage.node.sourceUrl} alt={page.title} fill="cover" className="relative w-full object-cover" />
       </FeaturedImage>
-      <div className='w-2/3 mr-0 ml-auto'>
-        <Content className="page-content">
-          <h1>{page.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: page.content }} />
-        </Content>
-      </div>
+      <Content className="page-content">
+        <h1>{page.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: page.content }} />
+      </Content>
     </div>
   )
 }

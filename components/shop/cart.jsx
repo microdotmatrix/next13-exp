@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useCart } from 'react-use-cart'
 import Image from 'next/image'
 
-export default async function Cart() {
+export default function Cart() {
   const {
     isEmpty,
     totalUniqueItems,
@@ -20,7 +20,7 @@ export default async function Cart() {
       <h2>Cart ({totalUniqueItems})</h2>
 
       <ul>
-        {items.map((item) => (
+        {items?.map((item) => (
           <li key={item.id} className='w-full'>
             <div className='flex flex-row justify-between items-center'>
               <div className='overflow-hidden' style={{ maxWidth: '360px' }}>

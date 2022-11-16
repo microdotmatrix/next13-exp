@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           </section>
           
         </header>
-        <main className="page-content">
+        <main className="content-container">
           {children}
         </main>
         <footer className="site-footer">

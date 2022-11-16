@@ -29,6 +29,22 @@ main {
   @include adaptive();
   padding-top: 2rem;
   padding-bottom: 2rem;
+  width: 100%;
   flex: 1;
 }
 
+.page-content,
+.post-content,
+.product-content {
+  width: 100%;
+  margin: 10rem auto 0;
+  @include breakpoint(min, medium) {
+    width: 66%;
+    margin-top: 0.5rem;
+    margin-right: 0;
+    margin-left: auto;
+  }
+  p {
+    padding: 0 0.5rem;
+  }
+}

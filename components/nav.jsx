@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
 import { modularScale } from 'polished';
+import { useCart } from 'react-use-cart';
 
 const navLinks = {
   fontSize: modularScale(3.33),
@@ -13,8 +14,26 @@ const iconStyle = {
   display: 'inline-flex'
 }
 
+
+
 const Nav = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const closeNav = () => { 
+    setNavOpen(false);
+  }
+  const openNav = () => {
+    setNavOpen(true);
+  }
+  const toggleNav = () => { 
+    setNavOpen(!navOpen);
+  }
+  const {
+    isEmpty,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem
+  } = useCart();
   return (
     <>
       <nav className={navOpen ? "flex" : "hidden"} style={navLinks}>
@@ -28,12 +47,15 @@ const Nav = () => {
           <Icon icon="carbon:shopping-bag" inline="true" style={iconStyle} /> <span>Shop</span>
         </Link>
         <Link href="/shop/cart">
-          <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} />
+          <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} /> <span>({totalUniqueItems})</span>
         </Link>
+        <button onClick={closeNav} className="block md:hidden absolute top-0 right-6">
+          <Icon icon="carbon:close" inline="true" width="1.5rem" />
+        </button>
       </nav>
-      <div className="mobileNav absolute right-0">
-        <div
-          onClick={() => setNavOpen()}
+      <div className="mobileNav flex md:hidden absolute right-0">
+        <button
+          onClick={() => toggleNav()}
           className="flex items-center justify-center w-10 h-10 text-white bg-blue-500 rounded-full cursor-pointer"
         >
           <svg
@@ -50,7 +72,7 @@ const Nav = () => {
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </>
   )

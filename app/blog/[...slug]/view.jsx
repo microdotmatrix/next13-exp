@@ -17,13 +17,12 @@ export default async function PostView({ post }) {
           <Image src={placeholderImage} alt={post.title} fill="cover" className="relative w-full h-full object-cover" />
         </FeaturedImage>
       )}
-      <div className='w-full md:w-2/3 mx-auto md:mr-0 md:ml-auto'>
-        <Content className="post-content">
-          <h1>{post.title}</h1>
-          <p>{post.date && <span> on {formatDate(post.date)}</span>}</p>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        </Content>
-      </div>
+      
+      <Content className="post-content">
+        <h1>{post.title}</h1>
+        <p>{post.date && <span> on {formatDate(post.date)}</span>}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      </Content>
     </div>
   )
 }
