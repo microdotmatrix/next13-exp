@@ -5,9 +5,10 @@ const FeaturedImage = ({ children }) => {
   return (
     <LazyMotion features={domAnimation}>
       <m.div
-        initial={{ opacity: 0, x: -100 }}
+        initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 100 }}
+        exit={{ opacity: 0, x: -50 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
         className="w-full md:w-1/3 h-80 md:h-full mx-auto md:ml-0 md:mr-auto overflow-hidden absolute md:fixed left-0 top-0">
         { children }
       </m.div>

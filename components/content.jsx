@@ -2,7 +2,7 @@
 
 import { m, LazyMotion, domAnimation } from 'framer-motion';
 
-export default function Content({ children, props }) {
+export default function Content({ children, ...props }) {
   return (
     <LazyMotion features={domAnimation}>
       <m.div

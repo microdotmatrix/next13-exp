@@ -1,3 +1,4 @@
+@use 'gerillass' as *;
 @use '../config' as *;
 @use '../functions' as *;
 
@@ -5,7 +6,25 @@
   position: relative;
   z-index: 10;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 3rem 4rem;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  @include breakpoint(min, large) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem;
+    text-align: left;
+    .colophon {
+      margin-top: 0;
+    }
+  }
+  @include breakpoint(min, xlarge) {
+    padding: 3rem 4rem;
+  }
+  .colophon {
+    margin-top: 2rem;
+  }
 }

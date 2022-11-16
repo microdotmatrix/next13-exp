@@ -15,11 +15,11 @@ export default async function Head({ params }) {
       <meta name="description" content={metaDesc} />
       <meta name="og:title" content={opengraphTitle} />
       <meta name="og:description" content={opengraphDescription} />
-      <meta name="og:image" content={opengraphImage.sourceUrl} />
+      <meta name="og:image" content={opengraphImage?.sourceUrl} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={twitterTitle} />
       <meta name="twitter:description" content={twitterDescription} />
-      <meta name="twitter:image" content={twitterImage.sourceUrl} />
+      <meta name="twitter:image" content={twitterImage?.sourceUrl} />
     </>
   )
 }

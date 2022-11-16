@@ -9,7 +9,7 @@ const cfg = {
 export default function SocialMedia() {
   return (
     <>
-      <ul className="social flex flex-row gap-4">
+      <ul className="social flex flex-row gap-3 lg:gap-4 xl:gap-5">
         <li>
           <Link href="">
             <Icon icon="simple-icons:github" className="social-link-icons" width={cfg.icons} />

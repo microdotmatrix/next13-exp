@@ -45,7 +45,7 @@ $smooch: 'Smooch Sans', sans-serif;
 
 // Global base variables for text sizing, spacing and weight
 $text-font:           $saira;
-$text-line:           1.618;
+$text-line:           var(--globalLineHeight);
 $text-weight:         366;
 $heading-font:        $oswald;
 $heading-weight:      500;

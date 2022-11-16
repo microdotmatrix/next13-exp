@@ -2,8 +2,9 @@
 @use '../config' as *;
 
 html {
-  font-family: $saira;
+  font-family: $text-font;
   font-size: 22px;
+  line-height: $text-line;
 }
 
 body {

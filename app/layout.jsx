@@ -7,7 +7,6 @@ import Logo from '@comp/logo'
 import SocialMedia from '@comp/social'
 
 export default function RootLayout({ children }) {
-  
   return (
     <html lang="en">
       {/*
@@ -31,7 +30,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <footer className="site-footer">
-          <div>
+          <div className='colophon'>
             <h4>&copy; JP 2022</h4>
           </div>
           <div>
