@@ -25,7 +25,7 @@ export default async function Cart() {
             <div className='flex flex-row justify-between items-center'>
               <div className='overflow-hidden' style={{ maxWidth: '360px' }}>
                 <Image
-                  src={item.image.sourceUrl}
+                  src={item.image?.sourceUrl}
                   alt={item.name}
                   width={200}
                   height={200}

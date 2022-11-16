@@ -23,7 +23,7 @@
     z-index: 10;
     margin: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     @include adaptive();
@@ -43,15 +43,20 @@
     .nav-menu {
       flex: 2 0 0;
       nav {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0 2rem;
         a {
+          text-align: left;
           span {
             font-family: $alumni;
+            vertical-align: 0.069em;
+            font-weight: 500;
           }
         }
       }
     }
     @include breakpoint(min, medium) {
-      flex-direction: row;
       .site-logo {
         flex: 3 0 33%;
         a {
@@ -61,6 +66,15 @@
       }
       .nav-menu {
         flex: 6 0 66%;
+        nav {
+          display: flex;
+          visibility: visible;
+          flex-direction: row;
+          justify-content: space-between;
+          a {
+            text-align: center;
+          }
+        }
       }
     }
     @include breakpoint(min, xlarge) {
