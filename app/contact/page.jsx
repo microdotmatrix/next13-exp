@@ -10,8 +10,8 @@ import Loading from '@app/loading'
 const PageView = dynamic(() => import('./view'), { suspense: true })
 
 const pageQuery = gql`
-  query getAboutPage {
-    page(idType: URI id: "about") {
+  query getContactPage {
+    page(idType: URI id: "contact") {
       id
       date
       title
@@ -39,7 +39,7 @@ async function fetchPage() {
   }
 }
 
-const About = async ({ params }) => {
+const Contact = async ({ params }) => {
   const page = await fetchPage()
   if (!page) {
     return (
@@ -58,4 +58,4 @@ const About = async ({ params }) => {
   )
 }
 
-export default About
+export default Contact

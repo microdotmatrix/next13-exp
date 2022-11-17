@@ -6,18 +6,6 @@
   z-index: 1;
   width: 100%;
   padding: 2rem 0 1rem;
-  overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute;
-    width: 103%;
-    height: 35vh;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0.85;
-    filter: blur(6px);
-  }
   section {
     position: relative;
     z-index: 10;

@@ -1,0 +1,17 @@
+@supports(block-size: auto) or (max-inline-size: 100%) {
+  img {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+}
+
+@supports not (block-size: auto) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+img {
+  object-fit: cover;
+}

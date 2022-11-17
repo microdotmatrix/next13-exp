@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
 import { modularScale } from 'polished';
 import { useCart } from 'react-use-cart';
 
 const navLinks = {
-  fontSize: modularScale(3.33),
+  fontSize: modularScale(2.68),
 }
 
 const iconStyle = {
@@ -16,8 +16,10 @@ const iconStyle = {
 
 
 
-const Nav = () => {
+const Nav = (props) => {
   const [navOpen, setNavOpen] = useState(false);
+  const { totalItems } = useCart();
+
   const closeNav = () => { 
     setNavOpen(false);
   }
@@ -27,13 +29,7 @@ const Nav = () => {
   const toggleNav = () => { 
     setNavOpen(!navOpen);
   }
-  const {
-    isEmpty,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    removeItem
-  } = useCart();
+  
   return (
     <>
       <nav className={navOpen ? "flex" : "hidden"} style={navLinks}>
@@ -46,32 +42,22 @@ const Nav = () => {
         <Link href="/shop">
           <Icon icon="carbon:shopping-bag" inline="true" style={iconStyle} /> <span>Shop</span>
         </Link>
+        <Link href="/contact">
+          <Icon icon="carbon:chat" inline="true" style={iconStyle} /> <span>Contact</span>
+        </Link>
         <Link href="/shop/cart">
-          <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} /> <span>({totalUniqueItems})</span>
+          <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} /> <span>({props.totalItems})</span>
         </Link>
         <button onClick={closeNav} className="block md:hidden absolute top-0 right-6">
           <Icon icon="carbon:close" inline="true" width="1.5rem" />
         </button>
       </nav>
-      <div className="mobileNav flex md:hidden absolute right-0">
+      <div className="mobileNav flex md:hidden absolute right-12">
         <button
           onClick={() => toggleNav()}
-          className="flex items-center justify-center w-10 h-10 text-white bg-blue-500 rounded-full cursor-pointer"
+          className="flex items-center justify-center w-12 h-12 text-white bg-liquid-900 rounded-full cursor-pointer"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
+          <Icon icon="carbon:menu" inline="true" width="2rem" style={iconStyle} />
         </button>
       </div>
     </>

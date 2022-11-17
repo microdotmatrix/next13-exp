@@ -17,6 +17,8 @@ $map-for-breakpoints: (
 
 @forward 'components/typography';
 @forward 'components/layout';
+@forward 'components/media';
+@forward 'components/buttons';
 @forward 'components/header';
 @forward 'components/footer';
 @forward 'components/nav';
