@@ -1,8 +1,7 @@
 "use client"
 
-import { useEffect, useState } from 'react'
-import { useCart } from 'react-use-cart'
 import Image from 'next/image'
+import { useCart } from 'react-use-cart'
 import { Icon } from '@iconify/react'
 
 export default function Cart() {
@@ -21,7 +20,10 @@ export default function Cart() {
 
   return (
     <>
-      <h2>Cart</h2>
+      <div className='flex flex-row items-center justify-between border-b border-b-gray-300 mb-6'>
+        <h2>Cart</h2>
+        <button className='btn' onClick={() => emptyCart()}>Empty Cart</button>
+      </div>
 
       <ul>
         {items?.map((item) => (
@@ -35,13 +37,13 @@ export default function Cart() {
                   height={400}
                 />
               </div>
-              <div className='flex flex-col justify-between pl-8'>
+              <div className='flex-1 flex flex-col justify-between pl-8'>
                 <h3>{item.name}</h3>
-                <span className='block text-3xl font-bold'>{item.price}</span>
+                <h2 className='text-liquid-600'>{item.price}</h2>
               </div>
-              <div className='flex-1 flex flex-row justify-end'>
+              <div className='flex-none flex flex-col justify-end'>
                 <h5 className='text-slate-500'>Qty:</h5>
-                <div className='grid grid-cols-3 items-center border border-gray-600 bg-neutral-900'>
+                <div className='grid grid-cols-3 items-center border border-gray-800 bg-neutral-800'>
                   <div className='item-qty subtract'>
                     <button
                       onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
@@ -49,7 +51,7 @@ export default function Cart() {
                       <Icon icon="mdi:minus" width="1.25rem" />
                     </button>
                   </div>
-                  <div className='item-qty text-center bg-slate-50'>
+                  <div className='item-qty total'>
                     <span className='font-semibold text-2xl'>{item.quantity}</span>
                   </div>
                   <div className='item-qty add'>
@@ -67,7 +69,6 @@ export default function Cart() {
         ))}
       </ul>
       <div className='flex flex-row items-center justify-end'>
-        <button className='btn' onClick={() => emptyCart()}>Empty Cart</button>
         <h4 className='my-0'>Total Items: {totalItems}</h4>
       </div>
     </>

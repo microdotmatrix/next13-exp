@@ -3,8 +3,12 @@
 import { useCart } from 'react-use-cart'
 
 export default function AddToCart({ product }) {
-  const { addItem } = useCart();
-
+  const { inCart, addItem } = useCart();
+  if (inCart(product.id)) {
+    return (
+      <button className='btn' disabled>Added to Cart</button>
+    )
+  }
   return (
     <button
       className="btn btn-primary"
