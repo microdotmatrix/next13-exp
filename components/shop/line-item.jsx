@@ -1,72 +1,92 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { updateCart } from "@util/functions";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-const LineItem = ({ item, setCart, handleRemoveProductClick }) => {
+import SVGX from '@comp/shop/svgx';
+import { getUpdatedItems, paddedPrice } from '@util/functions';
+
+const LineItem = ({
+  item,
+  products,
+  handleRemoveProductClick,
+  updateCart,
+  updateCartProcessing,
+}) => {
   const [productCount, setProductCount] = useState(item.qty);
-  const handleQtyChange = (e) => {
+  const totalPrice = paddedPrice(item.totalPrice, 'kr');
+
+  /*
+   * When user changes the quantity, update the cart in localStorage
+   * Also update the cart in the global Context
+   *
+   * @param {Object} event cartKey
+   *
+   * @return {void}
+   */
+  const handleQuantityChange = (event, cartKey) => {
     if (process.browser) {
-      //since info is coming from the server side, make sure it's loaded in the client
-      // const newQty = e.target.value
-      const newQty = e.target.value ? parseInt(e.target.value) : 1;
+      event.stopPropagation();
+      // Return if the previous update cart mutation request is still processing
+      if (updateCartProcessing) {
+        return;
+      }
+      // If the user tries to delete the count of product, set that to 1 by default ( This will not allow him to reduce it less than zero )
+      const newQty = event.target.value ? parseInt(event.target.value, 10) : 1;
+
+      // Set the new quantity in state.
       setProductCount(newQty);
-      console.log("newqty", e.target.value);
+      if (products.length) {
+        const updatedItems = getUpdatedItems(products, newQty, cartKey);
 
-      let existingCart = localStorage.getItem("woo-next-cart");
-
-      //its in JSON string format, so we need to parse it
-      existingCart = JSON.parse(existingCart);
-      //update the cart
-      const updatedCart = updateCart(existingCart, item, false, newQty);
-      setCart(updatedCart); //updated Global store
+        updateCart({
+          variables: {
+            input: {
+              clientMutationId: uuidv4(),
+              items: updatedItems,
+            },
+          },
+        });
+      }
     }
-  };
 
+    refetch();
+  };
   return (
-    <tr className="woo-next-cart-item" key={item.productId}>
-      {/* cross icon image */}
-      <th className="woo-next-cart-element woo-next-cart-el-close">
-        <span
-          className="woo-next-cart-close-icon"
-          onClick={handleRemoveProductClick}
-        >
-          <i className="fa fa-times-circle"></i>
-        </span>
-      </th>
-      {/* image */}
-      <td className="woo-next-cart-element">
+    <tr className="bg-gray-100">
+      <td className="px-4 py-2 border">
+        <SVGX
+          cartKey={item.cartKey}
+          handleRemoveProductClick={handleRemoveProductClick}
+          products={products}
+        />
+      </td>
+      <td className="px-4 py-2 border">
         <img
+          width="64"
           src={item.image.sourceUrl}
-          srcSet={item.image.sourceUrl}
-          width="64px"
+          srcSet={item.image.srcSet}
           alt={item.image.title}
         />
       </td>
-
-      {/* name */}
-      <td className="woo-next-cart-element">{item.name}</td>
-
-      {/* price */}
-      <td className="woo-next-cart-element">{item.price.toFixed(2)}</td>
-
-      {/* quantity */}
-      <td className="woo-next-cart-element">
+      <td className="px-4 py-2 border">{item.name}</td>
+      <td className="px-4 py-2 border">
+        kr {'string' !== typeof item.price ? item.price.toFixed(2) : item.price}
+      </td>
+      <td className="px-4 py-2 border">
         <input
+          className="w-12"
           type="number"
-          value={productCount}
-          name=""
           min="1"
-          className="woo-next-cart-qty-input"
-          onChange={handleQtyChange}
+          defaultValue={productCount}
+          onChange={(event) => handleQuantityChange(event, item.cartKey)}
         />
       </td>
-
-      {/* total */}
-      <td className="woo-next-cart-element">
-        {parseFloat(item.totalPrice).toFixed(2)}
+      <td className="px-4 py-2 border">
+        {'string' !== typeof item.totalPrice
+          ? totalPrice.toFixed(2)
+          : totalPrice}
       </td>
-      {/* <td className="woo-next-cart-element">{item.totalPrice.toFixed(2)}</td> */}
     </tr>
   );
 };

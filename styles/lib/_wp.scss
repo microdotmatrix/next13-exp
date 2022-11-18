@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1.25rem 0;
-  background: gradient(subtle-grey);
+  padding: 0;
+  background: gradient(space);
   @include breakpoint(min, large) {
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 0;
   }
   &__media {
     flex: 1 0 100%;
@@ -23,7 +23,7 @@
     @apply shadow-xl shadow-liquid-900/30 hover:shadow-liquid-900/50;
     transition: all 0.3s ease-in-out;
     @include breakpoint(min, large) {
-      flex: 1 0 50%;
+      flex: 1 0 48%;
     }
     &:hover {
       filter: grayscale(0%);
@@ -47,25 +47,38 @@
     flex-direction: column;
     justify-content: center;
     @include breakpoint(min, large) {
-      flex: 1 0 50%;
+      flex: 1 0 48%;
+      align-items: center;
+      padding: 1rem;
     }
     h1 {
       font-size: var(--h2);
     }
     h2 {
       font-size: var(--h3);
+      line-height: 1.15;
     }
     h3 {
       font-size: var(--h4);
+      line-height: 1.33;
     }
     h4 {
       font-size: var(--h5);
+      line-height: 1.42;
     }
     h5 {
       font-size: var(--h6);
+      line-height: 1.5;
+    }
+    h1, h2, h3, h4, h5 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
     p {
-      font-size: var(--base);
+      font-size: var(--sm);
+      line-height: 1.808;
+      padding: 0 0.5rem;
+      color: var(--c-background);
     }
   }
 }

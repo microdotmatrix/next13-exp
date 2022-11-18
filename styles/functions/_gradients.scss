@@ -19,6 +19,13 @@ $gradient-map: (
 	'subtle-grey':  	  linear-gradient(360deg, #dee1e1 10%, #f4f4f4 360%),
 	'haze': 				    linear-gradient(360deg,#949494 10%,#efefef 360%),
   'golden-dawn':      linear-gradient(to right,#fbb515,#d07830),
+  'gunmetal':         linear-gradient(to right, rgb(229, 231, 235), rgb(156, 163, 175), rgb(75, 85, 99)),
+  'gotham':           linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0)),
+  'ice':              linear-gradient(to right, rgb(245, 247, 255), rgb(226, 253, 247)),
+  'space':            linear-gradient(rgb(17, 24, 39), rgb(75, 85, 99)),
+  'silver':           linear-gradient(to right, rgb(243, 244, 246), rgb(209, 213, 219)),
+  'shimmer':          linear-gradient(rgb(244, 244, 245), rgb(203, 213, 225), rgb(107, 114, 128)),
+  
 );
 
 @function gradient($pattern) {

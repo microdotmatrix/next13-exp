@@ -1,211 +1,200 @@
-export const getFloatval = (string) => {
-  let floatValue = string.match(/[+-]?\d+(\.\d+)?/g)[0];
+import { v4 as uuidv4 } from 'uuid';
+
+/**
+ * Add empty character after currency symbol
+ * @param {String} price The price string that we input
+ * @param {String} symbol Currency symbol to add empty character/padding after
+ */
+export const paddedPrice = (price, symbol) =>
+  price.split(symbol).join(`${symbol} `);
+
+/**
+ * Shorten inputted string (usually product description) to a maximum of length
+ * @param {String} string The string that we input
+ * @param {Integer} length The length that we want to shorten the text to
+ */
+export const trimmedStringToLength = (string, length) => {
+  if (string.length > length) {
+    const subStr = string.substring(0, length);
+    return `${subStr}...`;
+  }
+  return string;
+};
+
+/**
+ * Creates a validation object with passed custom error messages.
+ * If `value` is not passed then returned object will contain only pattern message.
+ * @param {Object} messages Custom error messages
+ * @param {String} messages.minLength Message for min length attribute validation
+ * @param {String} messages.maxLength Message for max length attribute vlidation
+ * @param {String} messages.pattern Message for custom pattern vlidation
+ * @param {Integer=} value The number value used as limit for min/max attribute
+ * @param {RegExp} patternValue Regular expression pattern for validation
+ */
+export const getCustomNumberValidation = (
+  { minLength, maxLength, pattern },
+  value,
+  patternValue = /^\d+$/i
+) => {
+  const validationObj = {
+    minLength: { value, message: minLength },
+    maxLength: { value, message: maxLength },
+    pattern: { value: patternValue, message: pattern },
+  };
+
+  return Object.keys(validationObj).reduce((acc, key) => {
+    if (validationObj[key].value) {
+      acc[key] = validationObj[key];
+    }
+    return acc;
+  }, {});
+};
+
+/**
+ * Filter variant price. Changes "kr198.00 - kr299.00" to kr299.00 or kr198 depending on the side variable
+ * @param {String} side Which side of the string to return (which side of the "-" symbol)
+ * @param {String} price The inputted price that we need to convert
+ */
+export const filteredVariantPrice = (price, side) => {
+  if ('right' === side) {
+    return price.substring(price.length, price.indexOf('-')).replace('-', '');
+  }
+
+  return price.substring(0, price.indexOf('-')).replace('-', '');
+};
+
+/**
+ * Convert price from string to floating value and convert it to use two decimals
+ * @param {String} string
+ */
+export const getFloatVal = (string) => {
+  const stringWithoutKr = string.substring(2);
+  const floatValue = parseFloat(stringWithoutKr);
   return null !== floatValue
     ? parseFloat(parseFloat(floatValue).toFixed(2))
-    : "";
+    : '';
 };
 
-export const addFirstProduct = (product) => {
-  console.log("heey from inside the addproduct");
-  let productPrice = getFloatval(product.price);
-  //if no item in the cart, create an n empty array and pushe the item
-
-  let newCart = {
-    products: [],
-    totalProductsCount: 1,
-    totalProductsPrice: productPrice,
-  };
-
-  const newProduct = createNewProduct(product, productPrice, 1); //qty is 1 b/c its the first time we're creating it
-  newCart.products.push(newProduct);
-  localStorage.setItem("woo-next-cart", JSON.stringify(newCart));
-  return newCart;
-};
-
-//CREATE A NEW PRODUCT OBJECT
-
-export const createNewProduct = (product, productPrice, qty) => {
-  console.log("create new prod", parseFloat((productPrice * qty).toFixed(2)));
-  return {
-    productId: product.productId,
-    image: product.image,
-    name: product.name,
-    price: productPrice,
-    qty: qty,
-    totalPrice: parseFloat(productPrice * qty),
-  };
-};
-
-export const updateCart = (
-  existingCart,
-  product,
-  qtyToBeAdded,
-  newQty = false
-) => {
-  const updatedProducts = getUpdatedProducts(
-    existingCart.products,
-    product,
-    qtyToBeAdded,
-    newQty
-  );
-  const addPrice = (total, item) => {
-    console.log("ADDING PRICE", total.totalPrice);
-    // console.log("adding ITEM price", item.totalPrice)
-    total.totalPrice += item.totalPrice;
-    total.qty += item.qty;
-
-    return total;
-  };
-
-  //loop thtrough the update produt array and add the totalPrice of each item to get the totalPrice.
-  console.log("updated products before reduce", updatedProducts);
-
-  let total = updatedProducts.reduce(addPrice, { totalPrice: 0, qty: 0 });
-
-  console.log("updated cart", total.totalPrice);
-  console.log("total so far", total);
-  //updated card
-  const updatedCart = {
-    products: updatedProducts,
-    totalProductsCount: parseInt(total.qty),
-    totalProductsPrice: parseFloat(total.totalPrice),
-  };
-  localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
-  return updatedCart;
-};
-
-//get updated products array
-//updated the products if it exists
-//and add the new product to existing cart
-
-export const getUpdatedProducts = (
-  existingProductsInCart,
-  product,
-  qtyToBeAdded,
-  newQty = false
-) => {
-  //does product already exist in cart
-  const productExistsIndex = isProductInCart(
-    existingProductsInCart,
-    product.productId
-  );
-
-  //if product exists (index of that product is found in the array), update the product qty and total price
-
-  if (-1 < productExistsIndex) {
-    let updatedProducts = existingProductsInCart;
-    let updatedProduct = updatedProducts[productExistsIndex];
-
-    //if we have the new qty of the product available, set that else add tohe qtyTobeadded
-    updatedProduct.qty = newQty
-      ? parseInt(newQty)
-      : parseInt(updatedProduct.qty + qtyToBeAdded);
-    updatedProduct.totalPrice = parseFloat(
-      updatedProduct.price * updatedProduct.qty
-    );
-    return updatedProducts;
-  } else {
-    //if it doesnt exist, it's a new product
-    let productPrice = getFloatval(product.price);
-    const newProduct = createNewProduct(product, productPrice, qtyToBeAdded);
-    existingProductsInCart.push(newProduct);
-
-    return existingProductsInCart;
-  }
-};
-
-//return indexs of the product if it exists
-
-export const isProductInCart = (existingProductsInCart, productId) => {
-  const returnItemThatExists = (item, index) => {
-    if (productId === item.productId) {
-      return item;
-    }
-  };
-  const newArray = existingProductsInCart.filter(returnItemThatExists);
-  return existingProductsInCart.indexOf(newArray[0]); //will give me the position
-};
-
-export const removeItemFromCart = (productId) => {
-  //get the existing cart data.
-
-  let existingCart = localStorage.getItem("woo-next-cart");
-  existingCart = JSON.parse(existingCart);
-
-  //if there is only 1 item in the cart. delete the cart.
-  if (1 === existingCart.products.length) {
-    localStorage.removeItem("woo-next-cart");
-    return null;
-  }
-  //check if product already exists in the cart
-  const productExistsIndex = isProductInCart(existingCart.products, productId);
-
-  //if  product to be removed exists
-  if (-1 < productExistsIndex) {
-    const productToBeRemoved = existingCart.products[productExistsIndex];
-    //quantity to be removed from the toal
-    const qtyToBeRemovedFromTotal = productToBeRemoved.qty;
-    //price to be deducted from the total
-    const priceToBeDeductedFromTotal = productToBeRemoved.totalPrice;
-
-    //remove that product from the array and update price and qty
-    //1. first remove the qty and the total
-    let updatedCart = existingCart;
-    updatedCart.products.splice(productExistsIndex);
-    updatedCart.totalProductsCount =
-      updatedCart.totalProductsCount - qtyToBeRemovedFromTotal;
-
-    updatedCart.totalProductsPrice =
-      updatedCart.totalProductsPrice - priceToBeDeductedFromTotal;
-
-    //update localstorage and store with new values
-    localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
-    return updatedCart;
-  } else {
-    return existingCart;
-  }
-};
-
-//returns cart data in the required format.
+/**
+ * Returns cart data in the required format.
+ * @param {String} data Cart data
+ */
 export const getFormattedCart = (data) => {
   let formattedCart = null;
-
-  if (undefined === data || !data.cart.contents.nodes.length) {
+  if (!data || !data.cart.contents.nodes.length || !data.cart) {
     return formattedCart;
   }
-
   const givenProducts = data.cart.contents.nodes;
-
   // Create an empty object.
   formattedCart = {};
   formattedCart.products = [];
   let totalProductsCount = 0;
-
-  for (let i = 0; i < givenProducts.length; i++) {
-    const givenProduct = givenProducts[i].product;
+  let i = 0;
+  givenProducts.forEach(() => {
+    const givenProduct = givenProducts[parseInt(i, 10)].product;
     const product = {};
-    const total = getFloatVal(givenProducts[i].total);
+    // Convert price to a float value
+    const convertedCurrency = givenProducts[parseInt(i, 10)].total.replace(
+      /[^0-9.-]+/g,
+      ''
+    );
 
     product.productId = givenProduct.productId;
-    product.cartKey = givenProducts[i].key;
+    product.cartKey = givenProducts[parseInt(i, 10)].key;
     product.name = givenProduct.name;
-    product.qty = givenProducts[i].quantity;
-    product.price = total / product.qty;
-    product.totalPrice = givenProducts[i].total;
-    product.image = {
-      sourceUrl: givenProduct.image.sourceUrl,
-      srcSet: givenProduct.image.srcSet,
-      title: givenProduct.image.title,
-    };
+    product.qty = givenProducts[parseInt(i, 10)].quantity;
+    product.price = convertedCurrency / product.qty;
+    product.totalPrice = givenProducts[parseInt(i, 10)].total;
+    // Ensure we can add products without images to the cart
+    product.image = givenProduct.image
+      ? {
+          sourceUrl: givenProduct.image.sourceUrl,
+          srcSet: givenProduct.image.srcSet,
+          title: givenProduct.image.title,
+        }
+      : {
+          sourceUrl: process.env.NEXT_PUBLIC_PLACEHOLDER_SMALL_IMAGE_URL,
+          srcSet: process.env.NEXT_PUBLIC_PLACEHOLDER_SMALL_IMAGE_URL,
+          title: givenProduct.name,
+        };
 
-    totalProductsCount += givenProducts[i].quantity;
-
+    totalProductsCount += givenProducts[parseInt(i, 10)].quantity;
     // Push each item into the products array.
     formattedCart.products.push(product);
-  }
-
+    i++;
+  });
   formattedCart.totalProductsCount = totalProductsCount;
   formattedCart.totalProductsPrice = data.cart.total;
-
   return formattedCart;
+};
+
+export const createCheckoutData = (order) => ({
+  clientMutationId: uuidv4(),
+  billing: {
+    firstName: order.firstName,
+    lastName: order.lastName,
+    address1: order.address1,
+    address2: order.address2,
+    city: order.city,
+    country: order.country,
+    state: order.state,
+    postcode: order.postcode,
+    email: order.email,
+    phone: order.phone,
+    company: order.company,
+  },
+  shipping: {
+    firstName: order.firstName,
+    lastName: order.lastName,
+    address1: order.address1,
+    address2: order.address2,
+    city: order.city,
+    country: order.country,
+    state: order.state,
+    postcode: order.postcode,
+    email: order.email,
+    phone: order.phone,
+    company: order.company,
+  },
+  shipToDifferentAddress: false,
+  paymentMethod: order.paymentMethod,
+  isPaid: false,
+  transactionId: 'hjkhjkhsdsdiui',
+});
+
+/**
+ * Get the updated items in the below format required for mutation input.
+ *
+ * [
+ * { "key": "33e75ff09dd601bbe6dd51039152189", "quantity": 1 },
+ * { "key": "02e74f10e0327ad868d38f2b4fdd6f0", "quantity": 1 },
+ * ]
+ *
+ * Creates an array in above format with the newQty (updated Qty ).
+ *
+ */
+export const getUpdatedItems = (products, newQty, cartKey) => {
+  // Create an empty array.
+  const updatedItems = [];
+
+  // Loop through the product array.
+  products.map((cartItem) => {
+    // If you find the cart key of the product user is trying to update, push the key and new qty.
+    if (cartItem.cartKey === cartKey) {
+      updatedItems.push({
+        key: cartItem.cartKey,
+        quantity: parseInt(newQty, 10),
+      });
+
+      // Otherwise just push the existing qty without updating.
+    } else {
+      updatedItems.push({
+        key: cartItem.cartKey,
+        quantity: cartItem.qty,
+      });
+    }
+  });
+
+  // Return the updatedItems array with new Qtys.
+  return updatedItems;
 };

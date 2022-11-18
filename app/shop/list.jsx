@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import AddToCart from "@comp/shop/add-button";
+import AddToCart from "@comp/shop/add-button"
 
 export default async function ProductList({ products }) {
   return (
