@@ -6,6 +6,7 @@ html {
   font-family: $text-font;
   font-size: 22px;
   line-height: $text-line;
+  overflow-x: hidden;
 }
 
 body {
@@ -28,10 +29,14 @@ body {
 
 main {
   @include adaptive();
+  margin-top: 0;
   padding-top: 2rem;
   padding-bottom: 2rem;
   width: 100%;
   flex: 1;
+  @include breakpoint(min, medium) {
+    margin-top: 8.2rem;
+  }
 }
 
 .page-content,

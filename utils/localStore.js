@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 // Get/Set cached values for functions utilizing client storage (eg. Dark Mode)
 export function useStorage(key, defaultValue = '') {
-  if (process.env.SSR) {
+  if (process.browser) {
     return [defaultValue]
   }
 

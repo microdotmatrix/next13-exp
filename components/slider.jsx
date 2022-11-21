@@ -20,7 +20,7 @@ const Slider = () => {
           autoplay: true,
           interval: 5000,
           width: '100vw',
-          height: '60vh',
+          height: '85vh',
       }}
         aria-label="My Favorite Images"
       >
@@ -29,6 +29,9 @@ const Slider = () => {
         </SplideSlide>
         <SplideSlide>
           <Image src={slide2} alt="Image 2"/>
+        </SplideSlide>
+        <SplideSlide>
+          <Image src={slide3} alt="Image 3"/>
         </SplideSlide>
       </Splide>
     </div>

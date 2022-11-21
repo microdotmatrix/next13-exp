@@ -33,19 +33,19 @@ const Nav = (props) => {
   return (
     <>
       <nav className={navOpen ? "flex" : "hidden"} style={navLinks}>
-        <Link href="/about">
+        <Link href="/about" onClick={closeNav}>
           <Icon icon="carbon:information" inline="true" style={iconStyle} /> <span>About</span>
         </Link>
-        <Link href="/blog">
+        <Link href="/blog" onClick={closeNav}>
           <Icon icon="carbon:blog" inline="true" style={iconStyle} /> <span>Blog</span>
         </Link>
-        <Link href="/shop">
+        <Link href="/shop" onClick={closeNav}>
           <Icon icon="carbon:shopping-bag" inline="true" style={iconStyle} /> <span>Shop</span>
         </Link>
-        <Link href="/contact">
+        <Link href="/contact" onClick={closeNav}>
           <Icon icon="carbon:chat" inline="true" style={iconStyle} /> <span>Contact</span>
         </Link>
-        <Link href="/shop/cart">
+        <Link href="/shop/cart" onClick={closeNav}>
           <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} /> <span>({props.totalItems})</span>
         </Link>
         <button onClick={closeNav} className="block md:hidden absolute top-0 right-6">
