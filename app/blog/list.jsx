@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+// Post list rendering component, props passed from page.jsx
 export default async function PostList({ posts }) {
   return (
     <div>

@@ -5,7 +5,9 @@ import Content from '@comp/content'
 
 import placeholderImage from '@pub/images/bluesmoke.jpg'
 
-export default async function PostView({ post }) {
+// Post view rendering component, props passed from page.jsx
+export default async function PostView({ promise }) {
+  let post = await promise;
   return (
     <div className="flex flex-col md:flex-row">
       {post.featuredImage ? (

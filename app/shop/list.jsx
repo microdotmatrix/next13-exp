@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AddToCart from "@comp/shop/add-button"
 
+// Product List rendering component, props passed from page.jsx
 export default async function ProductList({ products }) {
   return (
     <div>

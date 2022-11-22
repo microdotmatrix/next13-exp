@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: 'sourcecodesavage.me',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 's.w.org',
+        pathname: '/**',
+      }
     ],
   },
 }

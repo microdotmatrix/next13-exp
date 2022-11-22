@@ -1,7 +1,9 @@
-import { graphql, PostMetaQuery } from '@lib/wp'
+import { graphql } from '@lib/wp'
+import { PostMetaQuery } from '@lib/wp/queries'
 
+// GraphQL request for meta data of the current post, generated in WordPress by Yoast SEO
 export async function getMetaData(slug) {
-  let data = await graphql.request(PostMetaQuery, { slug})
+  let data = await graphql.request(PostMetaQuery, { slug })
   return data?.postBy
 }
 

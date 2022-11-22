@@ -3,7 +3,7 @@ import { graphql } from '@lib/wp'
 
 const metaQuery = gql`
   query PageMeta {
-    pageBy(uri: "about") {
+    pageBy(uri: "contact") {
       id
       seo {
         metaDesc
@@ -27,6 +27,7 @@ const metaQuery = gql`
 // GraphQL request for meta data of the current post, generated in WordPress by Yoast SEO
 export async function getMetaData() {
   let data = await graphql.request(metaQuery, {})
+
   return data?.pageBy
 }
 

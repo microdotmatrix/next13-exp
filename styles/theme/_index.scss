@@ -5,7 +5,7 @@
 
 // Typography, sizing, spacing
 :root {
-  --baseTextSize: 18px;
+  --baseTextSize: 22px;
   --textSizeIncrement: 1.618;
 
   --text-xs: calc(var(--baseTextSize) / var(--textSizeIncrement));

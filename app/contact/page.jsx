@@ -2,45 +2,28 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
 import ClientIcon from '@util/clientIcon'
-import { gql } from 'graphql-request';
+
 import { graphql } from '@lib/wp'
+import { pageQuery } from '@lib/wp/queries'
 
 import Loading from '@app/loading'
 
 const PageView = dynamic(() => import('./view'), { suspense: true })
 
-const pageQuery = gql`
-  query getContactPage {
-    page(idType: URI id: "contact") {
-      id
-      date
-      title
-      slug
-      pageId
-      content
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-          caption
-          description
-        }
-      }
-    }
-  }
-`
-
-async function fetchPage() {
+async function fetchPage(slug) {
   try {
-    let data = await graphql.request(pageQuery, {})
-    return data?.page
+    let data = await graphql.request(pageQuery, { slug })
+    return data?.pageBy
   } catch (error) {
     throw error.message
   }
 }
 
 const Contact = async ({ params }) => {
-  const page = await fetchPage()
+  let slug = 'contact'
+  const page = await fetchPage(slug.toString())
+
+  // Error handling: if page does not exist, redirect to 404 page
   if (!page) {
     return (
       <div className="load-error">

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Content from '@comp/content'
 import FeaturedImage from '@comp/page/featured-image'
 
+// Page detail rendering component, props passed from page.jsx
 export default async function PageView({ page }) {
   return (
     <div className="flex flex-row">

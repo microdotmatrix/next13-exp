@@ -2,11 +2,13 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic';
 import Link from 'next/link'
 
-import { graphql, productQuery } from '@lib/wp'
+import { graphql } from '@lib/wp'
+import { productQuery } from '@lib/wp/queries'
 
 import Loading from './loading'
 import { ClientIcon } from '@util/clientIcon'
 
+// View component for page rendering, dynamically loaded with Suspense transition
 const ProductView = dynamic(() => import('./view'), { suspense: true })
 
 const fetchProduct = async (slug) => {
@@ -22,6 +24,7 @@ export default async function Product({ params }) {
   let slug = params.slug.toString()
   const product = await fetchProduct(slug)
 
+  // Error handling: If no product exists with the given slug, redirect to 404 page
   if (!product) {
     return (
       <div className="load-error">

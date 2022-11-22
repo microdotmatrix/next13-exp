@@ -2,7 +2,8 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 
 // Import GraphQL client and query
-import { graphql, allPostsQuery } from '@lib/wp'
+import { graphql } from '@lib/wp'
+import { allPostsQuery } from '@lib/wp/queries'
 
 // Load component
 import Loading from './loading'

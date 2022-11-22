@@ -1,5 +1,3 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,10 +6,10 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    fontFamily: {
-      sans: ['var(--font-saira)', ...fontFamily.sans]
-    },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-saira)']
+      },
       screens: {
         'xs': '512px',
         'sm': '768px',

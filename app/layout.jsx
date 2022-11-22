@@ -1,14 +1,20 @@
 import '~/main.scss';
 
-import Link from 'next/link'
+import { Saira } from '@next/font/google'
 
-import Nav from '@comp/nav'
+import { Nav, MobileNav } from '@comp/nav'
 import Logo from '@comp/logo'
 import SocialMedia from '@comp/social'
 
+const saira = Saira({
+  subsets: ["latin"],
+  variable: "--font-saira",
+  weight: 'variable',
+})
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={saira.className}>
       {/*
         <head /> will contain the components returned by the nearest parent
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
@@ -20,8 +26,11 @@ export default function RootLayout({ children }) {
             <div className="site-logo">
               <Logo />
             </div>
-            <div className="nav-menu">
+            <div className="nav-menu hidden md:flex">
               <Nav />
+            </div>
+            <div className='nav-menu flex md:hidden'>
+              <MobileNav />
             </div>
           </section>
           

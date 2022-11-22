@@ -20,7 +20,7 @@ const Slider = () => {
           autoplay: true,
           interval: 5000,
           width: '100vw',
-          height: '85vh',
+          height: '80vh',
       }}
         aria-label="My Favorite Images"
       >

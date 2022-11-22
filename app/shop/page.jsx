@@ -1,10 +1,14 @@
-import { Suspense, use } from 'react'
+import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import { graphql, productsQuery } from '@lib/wp'
+import { graphql } from '@lib/wp'
+
+// Load GraphQL query for fetching products
+import { productsQuery } from '@lib/wp/queries'
 
 import Loading from '../loading'
 import ClientIcon from '@util/clientIcon'
 
+// list component for page rendering, dynamically loaded with Suspense transition
 const ProductList = dynamic(() => import('./list'), { suspense: true })
 
 const fetchProducts = async () => {
@@ -16,6 +20,7 @@ const fetchProducts = async () => {
   }
 }
 
+// Render product data statically at build time
 export async function generateStaticParams() {
   const products = await fetchProducts();
 
@@ -28,6 +33,7 @@ export async function generateStaticParams() {
 export default async function ShopProducts() {
   const products = await fetchProducts()
   
+  // Error handling: If no products exist, display error message
   if (!products) {
     return (
       <div className="load-error">
