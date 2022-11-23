@@ -22,11 +22,11 @@ const fetchPost = async (slug) => {
 }
 
 export default async function Post({ params: { slug } }) {
-  // let slug = params.slug.toString()
-  const postData = await fetchPost(slug.toString())
+  // WP GraphQL requires slug to be stringified
+  const post = await fetchPost(slug.toString())
   
   // Error handling: If no post exists with the given slug, redirect to 404 page
-  if (!postData) {
+  if (!post) {
     return (
       <div className="load-error">
         <ClientIcon icon="line-md:cancel-twotone" size="250px" className="text-red-700 justify-self-center" />
@@ -39,7 +39,7 @@ export default async function Post({ params: { slug } }) {
 
   return (
     <Suspense fallback={<Loading />}>
-      <PostView promise={postData} />
+      <PostView post={post} />
     </Suspense>
   )
 }

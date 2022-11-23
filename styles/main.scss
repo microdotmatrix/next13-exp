@@ -2,12 +2,12 @@
 
 // Breakpoint map config for Gerillass
 $map-for-breakpoints: (
-  'small': '768px',
-  'medium': '960px',
-  'large': '1280px',
-  'xlarge': '1440px',
-  'desktop': '1600px',
-  'full': '1780px'
+  'small': '512px',
+  'medium': '768px',
+  'large': '960px',
+  'xlarge': '1280px',
+  'desktop': '1440px',
+  'full': '1600px'
 );
 
 @forward 'lib/tailwind';
