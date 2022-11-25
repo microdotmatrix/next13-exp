@@ -2,12 +2,11 @@
 // Load async motion components from Framer Motion library
 // Template wrapper renders client side to support synchronous effects utilized by 
 
-import { CartProvider, useCart } from 'react-use-cart'
-// import { AppProvider } from '@lib/cart/context'
-import { usePathname } from 'next/navigation';
-import { m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion';
+import { CartProvider } from 'react-use-cart'
+import { usePathname } from 'next/navigation'
+import { m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
 
-export default function Template({ children, ...props }) {
+export default function Template({ children }) {
   let location = usePathname()
 
   return (

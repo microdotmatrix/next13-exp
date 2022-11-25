@@ -11,13 +11,13 @@ module.exports = {
         sans: ['var(--font-saira)']
       },
       screens: {
-        'xs': '512px',
-        'sm': '768px',
-        'md': '960px',
-        'lg': '1280px',
-        'xl': '1440px',
-        '2xl': '1600px',
-        '3xl': '1780px'
+        'sm': '512px',
+        'md': '768px',
+        'lg': '960px',
+        'xl': '1280px',
+        '2xl': '1440px',
+        '3xl': '1600px',
+        '4xl': '1780px'
       },
       colors: {
         "liquid": {

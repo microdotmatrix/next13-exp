@@ -2,7 +2,7 @@ import '~/main.scss';
 
 import { Saira } from '@next/font/google'
 
-import { Nav, MobileNav } from '@comp/nav'
+import { NavBar } from '@comp/nav'
 import Logo from '@comp/logo'
 import SocialMedia from '@comp/social'
 
@@ -12,7 +12,7 @@ const saira = Saira({
   weight: 'variable',
 })
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, pageProps }) {
   return (
     <html lang="en" className={saira.className}>
       {/*
@@ -26,11 +26,8 @@ export default function RootLayout({ children }) {
             <div className="site-logo">
               <Logo />
             </div>
-            <div className="nav-menu hidden md:flex">
-              <Nav />
-            </div>
-            <div className='nav-menu flex md:hidden'>
-              <MobileNav />
+            <div className="nav-menu">
+              <NavBar />
             </div>
           </section>
           

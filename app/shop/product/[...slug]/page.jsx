@@ -20,9 +20,9 @@ const fetchProduct = async (slug) => {
   }
 }
 
-export default async function Product({ params }) {
-  let slug = params.slug.toString()
-  const product = await fetchProduct(slug)
+export default async function Product({ params: { slug } }) {
+  //WP GraphQL requires slug to be stringified
+  const product = await fetchProduct(slug.toString())
 
   // Error handling: If no product exists with the given slug, redirect to 404 page
   if (!product) {

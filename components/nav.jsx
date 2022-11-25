@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from 'react';
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
 import { modularScale } from 'polished';
 import { useCart } from 'react-use-cart';
 import { m, LazyMotion, domAnimation, useCycle } from 'framer-motion'
+
 
 const navLinks = {
   fontSize: modularScale(2.68),
@@ -41,10 +41,12 @@ const linkVariants = {
   }
 };
 
-export const Nav = () => { 
-  const { totalItems } = useCart();
+export const Nav = ({ ...props }) => { 
+  const [showCart, setShowCart] = useCycle(false, true)
+  let { totalItems } = useCart()
+
   return (
-    <nav id="desktop-nav" style={navLinks}>
+    <nav id="desktop-nav" style={navLinks} {...props}>
       <Link href="/about">
         <Icon icon="carbon:information" inline="true" style={iconStyle} /> <span>About</span>
       </Link>
@@ -64,9 +66,9 @@ export const Nav = () => {
   )
 }
 
-export const MobileNav = () => {
+export const MobileNav = ({ ...props }) => {
   const [navOpen, setNavOpen] = useCycle(false, true);
-  const { totalItems } = useCart();
+  let { totalItems } = useCart()
 
   const closeNav = () => { 
     setNavOpen(false);
@@ -80,7 +82,7 @@ export const MobileNav = () => {
   
   return (
     <LazyMotion features={domAnimation}>
-      <m.nav style={navLinks} initial={false} animate={navOpen ? "open" : "closed"}>
+      <m.nav style={navLinks} initial={false} animate={navOpen ? "open" : "closed"} {...props}>
         <m.ul variants={navVariants}>
           <m.li variants={linkVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
             <Link href="/about" onClick={closeNav}>
@@ -102,7 +104,7 @@ export const MobileNav = () => {
               <Icon icon="carbon:chat" inline="true" style={iconStyle} /> <span>Contact</span>
             </Link>
           </m.li>
-          <m.li variants={linkVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }}>
+          <m.li variants={linkVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.98 }} onClick={() => setCartOpen(true)}>
             <Link href="/shop/cart" onClick={closeNav}>
               <Icon icon="carbon:shopping-cart" inline="true" style={iconStyle} /> <span>{totalItems}</span>
             </Link>
@@ -122,6 +124,15 @@ export const MobileNav = () => {
         </button>
       </div>
     </LazyMotion>
+  )
+}
+
+export const NavBar = () => {
+  return (
+    <>
+      <Nav className="hidden md:flex" />
+      <MobileNav className="flex md:hidden" />
+    </>
   )
 }
 
