@@ -31,7 +31,6 @@
     .nav-menu {
       flex: 2 0 0;
       nav {
-        position: absolute;
         flex-direction: column;
         justify-content: flex-start;
         padding: 0 1rem;
@@ -58,7 +57,6 @@
       .nav-menu {
         flex: 6 0 66%;
         nav {
-          position: relative;
           display: flex;
           visibility: visible;
           flex-direction: row;

@@ -130,8 +130,8 @@ export const MobileNav = ({ ...props }) => {
 export const NavBar = () => {
   return (
     <>
-      <Nav className="hidden md:flex" />
-      <MobileNav className="flex md:hidden" />
+      <Nav className="hidden md:flex relative" />
+      <MobileNav className="flex md:hidden absolute" />
     </>
   )
 }

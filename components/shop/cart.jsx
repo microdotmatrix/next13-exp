@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useCart } from 'react-use-cart'
 import { Icon } from '@iconify/react'
+import { useHasMounted } from '@util/helpers'
 
 export default function Cart() {
   const {
@@ -15,6 +16,11 @@ export default function Cart() {
     removeItem,
     emptyCart
   } = useCart();
+
+  const hasMounted = useHasMounted()
+  
+  // Avoid hydration mismatch error by loading cart through a useEffect hook on the client for establishing the cart state
+  if (!hasMounted || isEmpty) return null
 
   if (isEmpty) return <p>Your cart is empty</p>;
 

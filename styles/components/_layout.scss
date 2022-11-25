@@ -18,6 +18,7 @@ body {
   min-height: 100vh;
   background: var(--c-background);
   color: var(--c-body);
+  overflow-x: hidden;
 }
 
 .left-column {
@@ -39,7 +40,7 @@ main {
 .post-content,
 .product-content {
   width: 100%;
-  margin: 10rem auto 0;
+  margin: 2rem auto 0;
   @include breakpoint(min, medium) {
     width: 66%;
     margin-top: 0.5rem;
